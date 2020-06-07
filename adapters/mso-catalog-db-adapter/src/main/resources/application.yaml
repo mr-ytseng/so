@@ -17,18 +17,24 @@ mso:
 spring:
   datasource:
      hikari:
-       jdbcUrl: jdbc:mariadb://${DB_HOST}:${DB_PORT}/catalogdb
-       username: ${DB_USERNAME}
-       password: ${DB_PASSWORD}
+#       jdbcUrl: jdbc:mariadb://${DB_HOST}:${DB_PORT}/catalogdb
+#       username: ${DB_USERNAME}
+#       password: ${DB_PASSWORD}
+       jdbcUrl: jdbc:mariadb://192.168.60.103:13306/catalogdb
+       username: root
+       password: root
        driver-class-name: org.mariadb.jdbc.Driver
        pool-name: catdb-pool
        registerMbeans: true
        
   flyway:
     baseline-on-migrate: false
-    url: jdbc:mariadb://${DB_HOST}:${DB_PORT}/catalogdb
-    user: ${DB_ADMIN_USERNAME}
-    password: ${DB_ADMIN_PASSWORD}
+    url: jdbc:mariadb://192.168.60.103:13306/catalogdb
+    user: root
+    password: root
+#    url: jdbc:mariadb://${DB_HOST}:${DB_PORT}/catalogdb
+#    user: ${DB_ADMIN_USERNAME}
+#    password: ${DB_ADMIN_PASSWORD}
     outOfOrder: true
     validateOnMigrate: false
   jpa:
