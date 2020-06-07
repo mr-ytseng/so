@@ -8,9 +8,9 @@ mso:
 spring: 
   datasource:
     hikari:
-      jdbcUrl: jdbc:mariadb://${DB_HOST}:${DB_PORT}/camundabpmn
-      username: ${DB_ADMIN_USERNAME}
-      password: ${DB_ADMIN_PASSWORD}
+      jdbcUrl: jdbc:mariadb://127.0.0.1:3306/camundabpmn
+      username: root
+      password: root
       driver-class-name: org.mariadb.jdbc.Driver
       pool-name: bpmn-pool
       registerMbeans: true
