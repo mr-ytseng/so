@@ -634,6 +634,7 @@ public class E2EServiceInstances {
 
         try {
             requestClient = requestClientFactory.getRequestClient(recipeLookupResult.getOrchestrationURI());
+            System.out.println(" **************** cntp requestClient:" + requestClient.getUrl());
 
             // Capture audit event
             logger.debug("MSO API Handler Posting call to BPEL engine for url: " + requestClient.getUrl());
