@@ -662,9 +662,39 @@ public class CatalogDbClient {
     }
 
     public ServiceRecipe getFirstByServiceModelUUIDAndAction(String modelUUID, String action) {
-        return this.getSingleResource(serviceRecipeClient,
+
+
+        ServiceRecipe sr = this.getSingleResource(serviceRecipeClient,
                 getUri(UriBuilder.fromUri(findFirstByServiceModelUUIDAndActionURI)
                         .queryParam(SERVICE_MODEL_UUID, modelUUID).queryParam(ACTION, action).build().toString()));
+
+
+        System.out.println(" **************** serviceRecipeClient : " + serviceRecipeClient);
+
+        if (serviceRecipeClient instanceof uk.co.blackpepper.bowman.Client) {
+            System.out.println(" **************** i am bowman.Client ");
+            System.out.println(" **************** serviceRecipeClient.class() :" + serviceRecipeClient.getClass());
+            // System.out.println(" **************** serviceRecipeClient.type() :" + serviceRecipeClient.getType());
+
+
+
+        }
+
+        System.out.println(" **************** cntp getFirstByServiceModelUUIDAndAction " + " ServiceRecipe : "
+                + " \n\n\n sr: " + sr);
+
+
+        return sr;
+
+
+
+        /*
+         *
+         *
+         * return this.getSingleResource(serviceRecipeClient,
+         * getUri(UriBuilder.fromUri(findFirstByServiceModelUUIDAndActionURI) .queryParam(SERVICE_MODEL_UUID,
+         * modelUUID).queryParam(ACTION, action).build().toString()));
+         */
     }
 
 
@@ -682,6 +712,9 @@ public class CatalogDbClient {
     }
 
     public Service getFirstByModelNameOrderByModelVersionDesc(String modelName) {
+
+        System.out.println(" **************** cntp getFirstByModelNameOrderByModelVersionDesc  msoAdaptersAuth:"
+                + msoAdaptersAuth + " endpoint:  " + endpoint);
         return this.getSingleResource(serviceClient,
                 UriBuilder.fromUri(findFirstByModelNameURI).queryParam(MODEL_NAME, modelName).build());
     }
@@ -693,6 +726,8 @@ public class CatalogDbClient {
     }
 
     public ServiceRecipe findServiceRecipeByActionAndServiceModelUUID(String action, String modelUUID) {
+        System.out.println(" **************** cntp findServiceRecipeByActionAndServiceModelUUID  msoAdaptersAuth:"
+                + msoAdaptersAuth + " endpoint:  " + endpoint);
         return this.getSingleResource(serviceRecipeClient,
                 getUri(UriBuilder.fromUri(findServiceRecipeByActionAndServiceModelUUID).queryParam(ACTION, action)
                         .queryParam(SERVICE_MODEL_UUID, modelUUID).build().toString()));
@@ -814,6 +849,16 @@ public class CatalogDbClient {
     }
 
     private <T> T getSingleResource(Client<T> client, URI uri) {
+        try {
+            System.out.println(" *************** cntp: client: " + client + " uri " + uri + " // client.get(uri) = "
+                    + client.get(uri));
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
         return client.get(uri);
     }
 

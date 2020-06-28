@@ -644,6 +644,8 @@ public class E2EServiceInstances {
                     .setRequestDetails(sirRequestJson).setApiVersion(version).setALaCarte(false)
                     .setRecipeParamXsd(recipeLookupResult.getRecipeParamXsd()).build();
             response = requestClient.post(parameter);
+            System.out.println(" **************** cntp response:" + response);
+
         } catch (Exception e) {
             Response resp = msoRequest.buildServiceErrorResponse(HttpStatus.SC_BAD_GATEWAY,
                     MsoException.ServiceException, "Failed calling bpmn " + e.getMessage(),
@@ -668,6 +670,7 @@ public class E2EServiceInstances {
 
         ResponseHandler respHandler = new ResponseHandler(response, requestClient.getType());
         int bpelStatus = respHandler.getStatus();
+        System.out.println(" **************** cntp respHandler:" + respHandler);
 
         return beplStatusUpdate(requestClient, respHandler, bpelStatus, version);
     }
@@ -837,17 +840,29 @@ public class E2EServiceInstances {
      */
     private RecipeLookupResult getServiceURI(String serviceModelUUID, Action action) {
 
+        // test start
+        // ServiceRecipe recipeAll = catalogDbClient
+        System.out.println(" ************** cntp serviceModelUUID : " + serviceModelUUID + " action: " + action);
+
+        // test end
+
         String defaultServiceModelName = "UUI_DEFAULT";
 
         Service defaultServiceRecord =
                 catalogDbClient.getFirstByModelNameOrderByModelVersionDesc(defaultServiceModelName);
+
+        defaultServiceRecord = catalogDbClient.getFirstByModelNameOrderByModelVersionDesc("UUI_DEFAULT");
+
+        System.out.println(" ************** cntp defaultServiceRecord : " + defaultServiceRecord);
         // set recipe as default generic recipe
         ServiceRecipe recipe =
                 catalogDbClient.getFirstByServiceModelUUIDAndAction(defaultServiceRecord.getModelUUID(), action.name());
+        System.out.println(" ************** cntp recipe : " + recipe);
         // check the service special recipe
         if (null != serviceModelUUID && !serviceModelUUID.isEmpty()) {
             ServiceRecipe serviceSpecialRecipe =
                     catalogDbClient.getFirstByServiceModelUUIDAndAction(serviceModelUUID, action.name());
+            System.out.println(" ************** cntp serviceSpecialRecipe : " + serviceSpecialRecipe);
             if (null != serviceSpecialRecipe) {
                 // set service special recipe.
                 recipe = serviceSpecialRecipe;

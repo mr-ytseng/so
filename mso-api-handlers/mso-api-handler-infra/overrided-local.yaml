@@ -9,12 +9,12 @@ mso:
   site-name: onapheat
   adapters:
     requestDb:
-      endpoint: http://192.168.60.75:30286
+      endpoint: http://localhost:30286
       auth: Basic YnBlbDpwYXNzd29yZDEk
   catalog:
     db:
       spring:
-        endpoint: http://192.168.60.75:30808
+        endpoint: http://localhost:30808
   db:
     #auth: Basic YnBlbDpwYXNzd29yZDEk
     auth: Basic YnBlbDpwYXNzd29yZDEk
@@ -30,7 +30,7 @@ mso:
         macro:
           default:
             testApi: GR_API
-  camundaURL: http://192.168.60.75:31089/
+  camundaURL: http://localhost:31089/
   camundaAuth: AE2E9BE6EF9249085AF98689C4EE087736A5500629A72F35068FFB88813A023581DD6E765071F1C04075B36EA4213A
   async:
     core-pool-size: 50
@@ -42,22 +42,22 @@ mso:
     activate:
       instanceid: test
       userid: cs0008
-    endpoint: http://192.168.60.75:30204
+    endpoint: http://localhost:30204
   tenant:
     isolation:
       retry:
         count: 3
   aai:
-    endpoint: https://192.168.60.75:30233
+    endpoint: https://localhost:30233
     auth: 6E081E10B1CA43A843E303733A74D9B23B601A6E22A21C7EF2C7F15A42F81A1A4E85E65268C2661F71321052C7F3E55B96A8E1E951F8BF6F
   extApi:
-    endpoint: http://192.168.60.75:30274/nbi/api/v3
+    endpoint: http://localhost:30274/nbi/api/v3
   so:
     operational-environment:
       dmaap:
         username: testuser
         password: VjR5NDcxSzA=
-        host: http://192.168.60.75:30241
+        host: http://localhost:30241
         auth: 51EA5414022D7BE536E7516C4D1A6361416921849B72C0D6FC1C7F262FD9F2BBC2AD124190A332D9845A188AD80955567A4F975C84C221EEA8243BFD92FFE6896CDD1EA16ADD34E1E3D47D4A
       publisher:
         topic: com.att.ecomp.mso.operationalEnvironmentEvent
@@ -66,14 +66,14 @@ mso:
     auth: Basic YnBlbDpwYXNzd29yZDEk
     endpoints:
       - subsystem: apih
-        uri: http://192.168.60.75:31089
+        uri: http://localhost:31089
       - subsystem: catalogdb
-        uri: http://192.168.60.75:30808
+        uri: http://localhost:30808
 
 spring:
   datasource:
     hikari:
-      jdbcUrl: jdbc:mariadb://192.168.60.75:9999/catalogdb
+      jdbcUrl: jdbc:mariadb://localhost:9999/catalogdb
       username: root
       password: secretpassword
       driver-class-name: org.mariadb.jdbc.Driver
@@ -110,7 +110,7 @@ spring:
 request:
   datasource:
     hikari:
-      jdbcUrl: jdbc:mariadb://192.168.60.75:9999/requestdb
+      jdbcUrl: jdbc:mariadb://localhost:9999/requestdb
       username: root
       password: secretpassword
       driver-class-name: org.mariadb.jdbc.Driver
